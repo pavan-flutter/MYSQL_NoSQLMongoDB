@@ -1,0 +1,288 @@
+
+
+Task 1: 
+Create a table STUDENT with under mentioned structure by using SQL Statement:
+
+StdID Number Primary Key
+StdName Character (30) NOT NULL
+Gender Character(6) Male or Female
+Percentage Number
+SClass Number
+Sec Character
+Stream Character(10) Science or Commerce
+DOB Date Date of Birth
+
+Create Schema SQL_Basics_Practice;
+use SQL_Basics_Practice;
+
+ 
+Create Table STUDENT (
+StdID integer Primary Key,
+StdName VARCHAR (30) NOT NULL,
+Gender VARCHAR(6),
+Percentage integer,
+SClass integer,
+Sec VARCHAR(10),
+Stream VARCHAR(10) ,
+DOB Date ,
+check(Gender in ('Male', 'Female')),
+check(Stream in ('Science', 'Commerce'))
+);
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(1001,'AKSHRA AGARWAL','Female',70,11,'A','Science','1996-11-10');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1002,'ANJANI SHARMA','Female',89,12,'B','Commerce','1996-09-18');
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1003,'ANSHUL SAXENA','Male',98,11,'C','Commerce','1996-11-01');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1004,'AISHWARYA SINGH','Female',49,12,'D','Commerce','1996-09-20');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1005,'AKRITI SAXENA','Female',67,12,'A','Commerce','2003-09-14');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(1006,'KHUSHI AGARWAL','Female',78,11,'E','Commerce','1997-04-21');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1007,'MAAHI AGARWAL','Female','79','12','B','Science','1997-11-26');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1008,'MITALI GUPTA','Female',78,11,'A','Science','1997-07-12');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1009,'NIKUNJ AGARWAL','Male',58,12,'C','Commerce','1997-12-20');
+
+INSERT INTO STUDENT
+  (StdID,StdName,Gender,Percentage,SClass,Sec,Stream,DOB)
+VALUES(
+1010,'PARKHI','Female',59,12,'D','Commerce','1996-11-19');
+
+
+
+
+
+
+Task 2:  
+Open school database, then select student table and use following statements.
+
+1. To display all the records form STUDENT table.
+
+select * from sql_basics_practice.student;
+
+2. To display only name and date of birth from the table STUDENT.
+
+select StdName,DOB from sql_basics_practice.student;
+
+3. To display all students record where percentage is greater of equal to 80 FROM student table.
+
+select * from sql_basics_practice.student where Percentage >=80;
+
+4. To display student name, stream and percentage where percentage of student is more than 80
+
+select StdName,Stream,Percentage from sql_basics_practice.student where Percentage >80;
+
+5. To display all records of science students whose percentage is more than 75 form student table.
+
+select * from sql_basics_practice.student where Percentage > 75 and Stream = 'Science' ;
+
+
+
+
+Task 3: 
+Open school database, then select student table and use following SQL statements.
+
+1. To display the STUDENT table structure.
+
+Desc student;
+
+2. To add a column (FIELD)in the STUDENT table, for example TeacherID as VARCHAR(20);
+
+ALTER TABLE STUDENT ADD Column TeacherID  VARCHAR(20);
+
+3. Describe the table - showing detailed information about the structure or the schema of a table in a database.
+
+select COLUMN_NAME,DATA_TYPE,COLUMN_TYPE from INFORMATION_SCHEMA.columns where table_name = 'student';
+
+4. Print all rows from student table, note the new field that you have added as TeacherID
+
+select * from student;
+
+5. To modify the TeacherID data type form character to integer.
+
+
+ALTER TABLE STUDENT MODIFY Column TeacherID  integer;
+
+
+
+
+
+
+Task 4:
+ 1. To Drop (Delete) a field form a table. For e.g you want to delete TeacherID field.
+
+ALTER TABLE STUDENT drop Column TeacherID;
+
+
+2. To subtract 5 form all students percentage and display name and percentage.
+
+
+select stdName,(Percentage -5) from sql_basics_practice.student ;
+
+3. Using column alise for example we want to display StdName as Student Name and DOB as Date of Birth then select the output.
+
+select stdName as "Student Name", DOB as "Date of Birth" from sql_basics_practice.student ;
+
+
+4. Display the name of all students whose stream is not Science
+
+select stdName as "Student Name", stream from student where Stream !='Science';
+
+5. Display all name and percentage where percentage is between 60 and 80
+
+select stdName,Percentage  from sql_basics_practice.student where percentage between 60 and 80 ;
+
+
+Task 5: 
+1. To change a student name from AISHWARYA SINGH to SWATI VERMA whose StdID is 1004 and also change percentage 86.
+
+select * from student where stdid =1004;
+update student set stdName ='SWATI VERMA' , percentage ='86' where stdID=1004;
+
+2. To delete the records form student table where StdId is 1006.
+
+delete  from student where stdid =1006;
+
+3. Type the following SQL statement and note the output.
+SELECT * FROM Student WHERE StdName LIKE 'G_' ;
+SELECT * FROM Student WHERE StdName='G';
+SELECT * FROM Student WHERE StdName LIKE 'G%' ;
+SELECT * WHERE Student WHERE StdName='%G%' ;
+
+
+SELECT * WHERE Student WHERE StdName='%G%' ; 
+got error have to change  
+SELECT * FROM Student WHERE StdName='%G%' ;
+
+4. Display all the streams in student table.
+
+select  stream FROM Student group by stream;
+
+
+5. Note the output of the following statement.
+SELECT StdName, Gender, Stream FROM Student WHERE percentage BETWEEN 70 AND 80
+
+SELECT StdName, Gender, Stream FROM Student WHERE percentage BETWEEN 70 AND 80;
+
+
+
+Task: 6
+Create a Table Empl to store employee details as shown below and write statements for following queries based on the table.
+
+
+Create Table Empl (
+empno integer primary key not null ,
+ename varchar (50),
+job varchar(20),
+mgr varchar(10) NULL ,
+hiredate date ,
+sal float ,
+comm varchar(10) NULL ,
+deptno integer);
+
+select * from Empl;
+
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8369,'SMITH','CLERK',8902,'1990-12-18',800.00,NULL,20);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8499,'ANYA','SALESMAN',8698,'1991-02-20',1600.00,300,30);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8521,'SETH','SALESMAN',8698,'1991-02-22',1250.00,500,30);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8566,'MAHADEVAN','MANAGER',8839,'1991-04-02',2985.00,NULL,20);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8654,'MOMIN','SALESMAN',8698,'1991-09-28',1250.00,1400,30);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8698,'BINA','MANAGEr',8839,'1991-05-01',2850.00,NULL,30);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8882,'SHIVANSH','MANAGER',8839,'1991-06-09',2450.00,NULL,10);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8888,'SCOTT','ANALYST',8566,'1992-12-19',3000.00,NULL,20);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8839,'AMIR','PRESIDENT',NULL,'1991-11-18',5000.00,NULL,10);
+insert into  Empl (empno ,ename ,job ,mgr ,hiredate ,sal ,comm ,deptno ) values (8844,'KULDEEP','SALESMAN',8698,'1991-09-08',1500.00,NULL,30);
+
+
+
+
+a. Write a query to display EName and Sal of employees whose salary are greater than or equal to 2200?
+
+select Ename,sal from Empl Where Sal >= 2200;
+
+b. Write a query to display details of employs who are not getting commission?
+
+select Ename,sal,comm from Empl Where  comm is null;
+
+
+c. Write a query to display employee name and salary of those employees who don’t have their salary in range of 2500 to 4000?
+
+select Ename,sal from Empl Where Sal between 2500 and 4000;
+
+
+
+d. Write a query to display the name, job title and salary of employees who don’t have manager?
+
+select Ename,job,sal from Empl Where mgr is null;
+
+e. Write a query to display the name of employee whose name contains “A” as third alphabet?
+
+select Ename,sal from Empl where ename like  '__A%' ;
+
+f. Write a query to display the name of employee whose name contains “T” as last alphabet?
+
+select Ename,sal from Empl where ename like  '%T' ;
+
+
+g. Write a query to display the name of employee whose name contains “M” as First and
+“L” as third alphabet?
+
+select Ename,sal from Empl where ename like  'M_L%' ;
+
+h. Write a query to display details of employs with the text “Not given”, if commission is null?
+
+select Ename,sal, COALESCE(comm,'Not Given') as com from Empl ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select Ename,sal, comm from Empl Where comm is null;
+
+
+
+
+
+
+
+
+
+
+
